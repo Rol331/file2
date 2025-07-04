@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Calendario de Metas</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  #calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+  
+  .day {
+    padding: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  
+  .selected {
+    background-color: red;
+  }
+</style>
+</head>
+<body>
+
+
+<h1>Calendario de Metas</h1>
+<div id="calendar"></div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">¡Has marcado el décimo día!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¡Felicidades! ¡Has marcado el décimo día en el calendario! Baya ese es una gran avance XD. 
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const calendar = document.getElementById('calendar');
+const selectedDays = JSON.parse(localStorage.getItem('selectedDays')) || {};
+
+function createCalendar() {
+  const daysInMonth = 31; // Puedes ajustar esto según el mes
+  let totalSelectedDays = 0;
+ let totalDays = 0;
+
+  for (let i = 1; i <= daysInMonth; i++) {
+    const day = document.createElement('div');
+    day.textContent = i;
+    day.classList.add('day');
+     totalDays++;    
+
+        // Verificar si el día está marcado en el Local Storage
+    if (selectedDays[i]) {
+      day.classList.add('selected');
+      totalSelectedDays++;
+    }
+ day.addEventListener('click', function() {
+      day.classList.toggle('selected');
+      if (day.classList.contains('selected')) {
+        selectedDays[i] = true;
+        totalSelectedDays++;
+      } else {
+        delete selectedDays[i];
+        totalSelectedDays--;
+      }
+      localStorage.setItem('selectedDays', JSON.stringify(selectedDays));
+      
+      // Mostrar modal al marcar 10 días
+      if (totalSelectedDays === 10) {
+        const myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+        myModal.show();
+      }
+
+           // Mostrar modal cuando todos los días están marcados
+      if (totalSelectedDays === totalDays) {
+        const myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+        myModal.show();
+      }
+
+
+      
+    });
+ calendar.appendChild(day);
+  }
+}
+
+createCalendar();
+
+/*
+function createCalendar() {
+  const daysInMonth = 31; // Puedes ajustar esto según el mes
+  for (let i = 1; i <= daysInMonth; i++) {
+    const day = document.createElement('div');
+    day.textContent = i;
+    day.classList.add('day');
+    
+    // Verificar si el día está marcado en el Local Storage
+    if (selectedDays[i]) {
+      day.classList.add('selected');
+    }
+    
+    day.addEventListener('click', function() {
+      day.classList.toggle('selected');
+      if (day.classList.contains('selected')) {
+        selectedDays[i] = true;
+      } else {
+        delete selectedDays[i];
+      }
+      localStorage.setItem('selectedDays', JSON.stringify(selectedDays));
+      
+      // Mostrar modal al hacer clic en el décimo día
+      if (i === 10) {
+        const myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+        myModal.show();
+      }
+    });
+    
+    calendar.appendChild(day);
+  }
+}
+
+createCalendar();
+*/
+
+
+
+
+</script>
+</body>
+</html>

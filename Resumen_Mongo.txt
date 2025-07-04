@@ -1,0 +1,398 @@
+Resumen mongo db 
+
+use basedatos → crear base de datos o selecianar una 
+show collections; ---> listar todas las colleciones 
+
+show dbs → lista todas las base de datos
+Listar documentos (contenido de las tablas o colecciones) 
+db.documento.find().limit(5)  → lista los 5 primeros documento
+db.documento.find().sort({_id: -1}).skip(0).limit(5).pretty() → Mostrar los últimos 5 documentos de forma expandida(pretty)
+
+	##listar los últimos 10 documentos de una colección en MongoDB, puedes utilizar la siguiente consulta:
+
+	db.collection.find().sort({$natural: -1}).limit(10)
+
+	Esta consulta hace lo siguiente:
+
+	1. db.collection: Se refiere a la colección que deseas consultar.
+	2. find(): Busca todos los documentos en la colección.
+	3. sort({$natural: -1}): Ordena los resultados en orden descendente basado en el índice natural del documento (que es similar al orden de
+	 inserción).
+
+	##Si quieres incluir campos específicos en lugar de todos los campos, puedes modificar la consulta así:
+
+	db.collection.find({}, { campo1: 1, campo2: 1 }).sort({$natural: -1}).limit(10)
+
+db.coleción.find({nombre:/ /})
+
+Listar datos 
+db.libros.find()---> mostar todos los registros 
+db.liros.fid(nombrecampo:dato) → filtro de campos (similar al where)
+
+
+db.libros.find({precio : 50, cantidad : 20 })
+category_product
+
+db.recursos.find({ nombre: /varita/i}) --> Similar al like de sql 
+
+### Contar todas la collecciones
+
+    db.getCollectionNames().length
+
+## Contar documentos 
+
+## Para contar todos los documentos en una colección de MongoDB, puedes usar la siguiente consulta:
+
+db.collection.countDocuments()
+
+#Si quieres incluir solo ciertos campos en el resultado, puedes usar un objeto de selección:
+
+db.collection.countDocuments({ campo1: valor1, campo2: valor2 })
+
+
+Por ejemplo, si quieres contar solo los documentos donde el campo "estado" sea igual a "activo":
+
+db.collection.countDocuments({ estado: "activo" })
+
+--Consulta avanzadaa para contar un campo especifico de una colleccion 
+
+   db.recursos.aggregate([
+       { $group: { _id: "$codigo", count: { $sum: 1 } } },
+       { $match: { count: { $gt: 1 } } }
+   ])
+
+
+1. $group:
+   - Esta etapa agrupa los documentos en un solo grupo.
+   - _id: null indica que no queremos agrupar por ningún campo específico.
+   - count: { $sum: 1 } suma 1 para cada documento en el grupo.
+
+2. $project:
+   - Esta etapa define qué campos incluir en la salida.
+   - count: 1 especifica queremos incluir el campo count.
+
+Explicación detallada:
+
+- La consulta está buscando contar todos los recursos en la colección recursos.
+- El primer paso ($group) crea un único grupo con todos los documentos.
+- Luego, sumariza el conteo de todos los documentos en ese grupo.
+- Finalmente, el segundo paso ($project) filtra solo el campo count en la salida.
+
+Esta consulta resultaría en un array con un solo objeto, donde el valor del campo count sería igual al número total de recursos en la
+ colección.
+
+Por ejemplo, si hay 2  recursos en la colección, la salida podría ser:
+
+[ { _id: '11223344', count: 2 } ]
+
+Esta consulta es útil cuando necesitas obtener un recuento general de elementos en una colección MongoDB sin tener que iterar manual
+mente sobre todos los documentos.
+
+
+
+##INSERTAR DATOS 
+
+insertar datos 
+db.libros.insertOne(
+  {
+    codigo: 1,  
+    nombre: 'El aleph',
+    autor: 'Borges',
+    editoriales: ['Planeta','Siglo XXI']
+  }
+
+
+BORRAR DATOS DE UNA COLECCIÓN 
+-----------------------
+use base1
+db.dropDatabase() ---> elimanr la base de datos
+
+db.collection.remove({}) --> borrar las documentos de una colleccion
+
+db.nombreColeccion.deleteMany({ estado: "inactivo" })  ---> eliminar dato  con parametro 
+
+db.nombreColeccion.deleteOne({ nombre: "Juan" }) --> Elininar un solo documento que cumpla con el criterio (PENDIENTE PRUEBA) 
+
+db.recursos.updateMany({}, { $unset: { precio_actual: "" }); --> Eliminar un campo
+
+## Consulta para eliminar documentos por rango de fecha 
+
+db.recursos.deleteMany({
+   fecha : {
+   	   $gte : new ISODate('2022-12-10T05:00:00.000Z'),
+   	   $lt  : new ISODate('2022-13-10T05:00:00.000Z')
+    }	
+});
+
+## varios documentos por ids 
+
+db.compra_recursos.deleteMany({
+  _id: { $in: [
+    ObjectId('66e9c1212d6483a0944a0294'),
+    ObjectId('66eb5531bb03c148c366eb58')
+  ]}
+});
+
+
+ACTUALIZACIONES DE EN LA BASE DE DATOS 
+---------------------------------------
+
+ Si quieres renombrar el campo 'precio_actual ' a 'precio_actual' (sin espacio) y mantener su valor actual:
+
+```javascript
+db.almacenes.updateMany(
+  { 'tipo': { $exists: true } },
+  { $rename: { 'tipo': 'estado' } }
+);
+
+
+db.almacen_recursos.updateMany(
+  { 'precio': { $exists: true } },
+  { $rename: { 'precio': 'costo' } }
+);
+
+
+Actualizar con parametro 
+db.requerimiento.updateOne(
+ { _id: ObjectId("671f9bb0374c1bb039b59b43") },
+ {
+    $set: { 
+      "codigo": "0003-INA_CAS-2024"
+    }
+ }
+)
+
+
+db.transferencia_recurso.updateOne(
+ { _id: ObjectId("6754666e7b5d28a87e343909") },
+ {
+    $set: { 
+      "cantidad": 9
+    }
+ }
+)
+
+
+
+
+otro ejemplo para actualizar por parametro 
+
+db.compra_recursos.updateOne(
+  { _id: ObjectId('66e9c0a82d6483a0944a0292') }, // Filtro para encontrar el documento
+  { $set: { recurso_id: ObjectId('6728e3bee29e4d45c4fb841f') } } // Actualización del campo recurso_id
+);
+
+
+db.cotizacion_proveedores_recurso.updateOne(
+  { _id: ObjectId('674a4a27e1950837a7639451') }, // Filtro para encontrar el documento
+  { $set: { cotizacion_proveedor_id : ObjectId('674a2c959a2f5e3d2d84ae94') } } // Actualización del campo recurso_id
+);
+
+
+
+
+Actualizar data en todos los documentos
+
+db.requerimiento.updateMany(
+ {}, // vacío para actualizar todos los documentos
+ {
+    $set: {
+      estado: 'pendiente'
+    }
+ }
+)
+
+Agregar un campo con valor a todo los documentos:
+
+db.recursos.updateMany(
+  { vigente: { $exists: false } },
+  { $set: { vigente: true } }
+)
+
+Actualizar fecha de recursos de string a isoDate
+
+
+db.recursos.updateMany(
+  { fecha: { $type: "string" } },
+  [
+    {
+      $set: {
+        fecha: {
+          $dateFromString: {
+            dateString: "$fecha",
+            format: "%Y-%m-%d"
+          }
+        }
+      }
+    }
+  ]
+)
+
+
+##Convertir todos los documentos que tengan un `codigo` numérico a string, puedes hacer lo siguiente:
+db.recursos.updateMany(
+    { codigo: { $type: "number" } }, // Filtrar documentos donde 'codigo' es un número
+    [
+        { $set: { codigo: { $toString: "$codigo" } } } // Convertir 'codigo' a string
+    ]
+)
+
+##Convertir el `codigo` de un documento específico 
+(por ejemplo, el que tiene `_id: ObjectId('66e47458f0f30374dd3daf05')`), puedes usar:
+
+db.recursos.updateOne(
+    { _id: ObjectId('66e47458f0f30374dd3daf05') }, // Filtrar por ID
+    { $set: { codigo: "13210" } } // Actualizar 'codigo' a string
+)
+
+## convertir de string a objectid 
+
+db.almacen_recursos.updateMany(
+  {}, // filtro vacío para actualizar todos los documentos
+  [
+    {
+      $set: {
+        recurso_id: { $toObjectId: "$recurso_id" },
+        almacen_id: { $toObjectId: "$almacen_id" }
+      }
+    }
+  ]
+);
+
+db.obra_bodega_recursos.updateMany(
+  {}, // filtro vacío para actualizar todos los documentos
+  [
+    {
+      $set: {
+        recurso_id: { $toObjectId: "$recurso_id" },
+        obra_bodega_id: { $toObjectId: "$obra_bodega_id" }
+      }
+    }
+  ]
+);
+
+
+db.obra_bodega_recursos.updateMany(
+    {},
+    [
+        {
+            $set: {
+                obra_bodega_id: { $toObjectId: "$obra_bodega_id" },
+                recurso_id: { $toObjectId: "$recurso_id" }
+            }
+        }
+    ]
+);
+
+
+###Agregar un campo a una colección en MongoDB filtrada por el ID,
+      puedes usar el siguiente comando:
+                                        
+ db.cotizacion.updateOne(
+ { _id: ObjectId("bn") },
+ {
+    $set: {
+      solicitud_compra_id: ObjectId("673f6f78bb472dba5b51db04")
+    }
+ }
+ 
+----------------------------------------------------------
+Listado de operadores relacionales
+$eq - equal - igual
+$lt - low than - menor que
+$lte - low than equal - menor o igual que
+$gt - greater than - mayor que
+$gte - greater than equal - mayor o igual que
+$ne - not equal - distinto
+$in - in - dentro de
+$nin - not in - no dentro de
+
+Comando para limpiar pantall: cls
+
+
+db.product.find({parent_category:"61d763406657fd00309e417e"},{product_name:1,store_id:1, enable:1,false_information:1, product_state:1, test:1,custom_id:1  }).pretty()
+
+
+////////////////////////////////////Agregate ///////////////////////////////////////////
+
+Pipeline en MongoDB es una secuencia de operaciones de agregación que se ejecutan en orden para transformar y procesar datos. Te explico sus principales características:
+
+1. Propósito principal:
+- Procesar datos en etapas secuenciales
+- Transformar documentos
+- Realizar cálculos
+- Filtrar información
+- Agrupar resultados
+
+2. Estructura básica:
+```javascript
+db.coleccion.aggregate([
+    { $stage1 }, // Primera operación
+    { $stage2 }, // Segunda operación
+    { $stage3 }  // Tercera operación
+])
+```
+
+3. Operadores comunes en pipeline:
+- $match: Filtra documentos
+- $group: Agrupa documentos
+- $sort: Ordena resultados
+- $project: Selecciona campos
+- $lookup: Une colecciones
+- $unwind: Descompone arrays
+
+4. Ejemplo práctico:
+```javascript
+db.ventas.aggregate([
+    { $match: { fecha: { $gte: "2023-01-01" } } },
+    { $group: { 
+        _id: "$producto",
+        total: { $sum: "$cantidad" }
+    }},
+    { $sort: { total: -1 }}
+])
+
+
+
+#####actulaacion de un nuevo campo con data ramdon de otra tabla 
+
+
+
+db.almacen_recursos.aggregate([
+  { $match: { bodega_id: { $exists: false } } },
+  {
+    $lookup: {
+      from: "bodega",
+      pipeline: [{ $sample: { size: 1 } }],
+      as: "randomBodega"
+    }
+  },
+  { $unwind: "$randomBodega" },
+  {
+    $set: {
+      bodega_id: "$randomBodega._id"
+    }
+  },
+  { $project: { randomBodega: 0 } },
+  { $merge: { into: "almacen_recursos", on: "_id", whenMatched: "merge", whenNotMatched: "discard" } }
+]);
+
+
+
+
+
+db.recursos.find().forEach(function(doc) {
+...     try {
+...         new Date(doc.fecha).toISOString();
+...     } catch(e) {
+...         print("Documento con fecha inválida:", doc._id);
+...         db.recursos.updateOne(
+...             { _id: doc._id },
+...             { 
+...                 $set: { 
+...                     fecha: new Date("2025-01-01T00:00:00.000Z")
+...                 } 
+...             }
+...         )
+...     }
+... })

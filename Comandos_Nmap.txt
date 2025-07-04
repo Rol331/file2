@@ -1,0 +1,9 @@
+
+comandos nmap
+
+nmap -sn 192.168.1.0/24      —>escanear todos los dispositivos de mi red
+sudo nmap -sn 192.168.1.0/24  → colocara los nombres 
+nmap -sn 192.168.1.0/24 -oG scan.txt  →guardar lo escaneado en un archivo txt
+
+
+

@@ -1,0 +1,54 @@
+Para conectarte a un servidor Windows desde Ubuntu, puedes utilizar varias herramientas y protocolos. Una de las formas más com
+unes es mediante el uso de Remote Desktop Protocol (RDP), que permite la conexión gráfica al sistema operativo Windows. Aquí te
+ muestro cómo hacerlo utilizando rdesktop, una herramienta de línea de comandos para acceder a sistemas Windows a través del
+ protocolo RDP.
+
+### Instalación de rdesktop
+
+Primero, necesitas instalar rdesktop en tu sistema Ubuntu. Abre una terminal y ejecuta el siguiente comando:
+
+```bash
+sudo apt update
+sudo apt install rdesktop
+```
+
+### Conexión a través de RDP
+
+Una vez instalado rdesktop, puedes conectar al servidor Windows utilizando su dirección IP o nombre de dominio. El comando bás
+ico es el siguiente:
+
+```bash
+rdesktop [IP_del_servidor]
+```
+
+Por ejemplo, si la dirección IP de tu servidor Windows es 192.168.1.100, el comando sería:
+
+```bash
+rdesktop 192.168.1.100
+```
+
+Si necesitas especificar un puerto diferente al predeterminado (3389), puedes usar la opción -p seguida del número de puerto
+:
+
+```bash
+rdesktop -p 3390 192.168.1.100
+```
+
+Además, puedes personalizar la resolución de pantalla con la opción -g. Por ejemplo, para establecer la resolución en 1024x768
+, usa:
+
+```bash
+rdesktop -g 1024x768 192.168.1.100
+```
+
+### Opciones adicionales
+
+- Para iniciar sesión automáticamente sin interactuar con el cuadro de diálogo de inicio de sesión, puedes usar la opción -u
+ seguido de tu nombre de usuario y -p seguido de tu contraseña. Sin embargo, ten cuidado con esta opción ya que puede
+ representar un riesgo de seguridad si se utiliza entornos públicos o compartidos.
+
+```bash
+rdesktop -u sername -p assword 192.168.1.100
+```
+
+Recuerda reemplazar username y password con tus credenciales de acceso al servidor Windows.

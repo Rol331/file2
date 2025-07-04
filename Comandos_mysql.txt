@@ -1,0 +1,100 @@
+COMANDOS ESTADO DENOMIO  MYSQL
+ 
+sudo systemctl start mysql.service 
+sudo systemctl status mysql.service
+sudo systemctl stop mysql
+
+COMANDOS USUARIOS
+ 
+sudo mysql 
+SELECT User, Host FROM mysql.user; --> lista todos los usuarios
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'tu_nueva_contraseña'; --> comando para cambiar de contraseña
+CREATE USER 'nombre_usuario'@'localhost' IDENTIFIED BY 'contraseña'; --> crear usario (obio)
+
+GRANT ALL PRIVILEGES ON *.* TO 'nombre_usuario'@'localhost';
+FLUSH PRIVILEGES;
+
+Este comando le da al usuario todos los privilegios sobre todas las bases de datos (*.). El comando FLUSH PRIVILEGES; se
+ utiliza para recargar los privilegios del sistema, asegurándose de que los cambios surtan efecto inmediatamente.
+
+
+COMANDOS PARA LIMPIAR PANTALLA 
+  \! clear
+
+IMPORTAR BASE DE DATOS 
+
+  mysql -u t_usuario -p tu_nombre_de_base_de_datos < nombre_de_tu_archivo.sql
+  SOURCE /home/wh52o55jo1zx/public_html/evanzu.com/ecomoda/two-b_ecomoda.sql;  → importar datos mysql se debe estar dentro de la base de datos
+
+CREAR ARCHIVO PARA EXPORTAR BASE DE DATOS 
+  mysqldump -u [username] -p[password] [database_name] > [output_file].sql
+
+CREATE DATABASE nombre_de_tu_base_de_datos; 
+
+CAMBIAR NOMBRE DE TABLA 
+
+   RENAME TABLE usuarios_viejos TO usuarios; (no borra la data que tiene)
+
+CAMBIAR EL NOMBRE DE UNA COLUMNA
+
+    ALTER TABLE empleados CHANGE id_empleado codigo_empleado INT;
+
+AÑADIR UNA COLUMNA(CAMPO) 
+
+     ALTER TABLE nombre_de_tu_tabla ADD nuevo_campo VARCHAR(255);
+     
+ELIMNAR UN COLUMNA (CAMPO)
+
+  ALTER TABLE nombre_de_tu_tabla DROP COLUMN nombre_antiguo_del_campo;
+
+RENOMBRAR EL NOMBRE DE UN CAMPO
+
+ ALTER TABLE nombre_de_tu_tabla CHANGE nuevo_nombre_del_campo nombre_antiguo_del_campo tipo_de_dato;
+
+CAMBIAR EL TIPO DE DATO DE COLUMNA (CAMPO)  
+
+  alter table partida_recurso modify cantidad int;
+
+MOVER LA DISPOCION DE UN CAMPO 
+
+   ALTER TABLE nombre_de_tu_tabla 
+   MODIFY COLUMN nombre_del_campo tipo_de_dato 
+   AFTER nombre_del_campo_referencia;
+   
+   alter table partida_recurso modify column cantidad int after costo_meta;
+                     
+CONSULTA PARA CONTAR TODAS LAS TABLAS DE LA BASE DE DATOS 
+
+ Select count(*) from information_schema.tables where table_schema = 'prueba_relacion';
+
+CONSULTA PARA VISUALIZAR LA RELACION DE UNA TABLA 
+
+  SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE REFERENCED_TABLE_NAME IS NOT NULL AND TABLE_NAME = 'presupuesto_subtitulo';
+
+CONSULTAS PARA REPARAR LA RELACION DE UNA TABLA (si el referenced column name esta errado)
+
+  1)  Con la consulta para visualizar la relacion de la tabla obtendremos  el CONSTRAINT_NAME
+   (ojo no es el nombre de la fk en la creación de la tabla)
+
+  2)  usamos esta consulta para eliminar el constrain_name :
+      - ALTER TABLE usuario_aprobacion_obra  DROP FOREIGN KEY usuario_aprobacion_obra_ibfk_1;
+  3)  usamos la siguiente consulta para actulizar la fk 
+  
+   ALTER TABLE usuario_aprobacion_obra  ADD CONSTRAINT usuario_id 
+   FOREIGN KEY (id) REFERENCES usuario(id);
+   
+     
+
+CONSULTA PARA LISTAR TABLAS VACIAS
+
+  SELECT table_name  FROM information_schema.tables  WHERE table_schema = 'inacons' AND table_rows = 0;
+
+CONSULTA PARA LISTAR TABLAS CON CONTENIDO 
+   SELECT TABLE_NAME  FROM INFORMATION_SCHEMA.TABLES   WHERE TABLE_SCHEMA = 'inacons' AND TABLE_ROWS > 0;
+
+CONSULTA PARA LISTAR TODAS LAS TABLAS QUE TENGA CIERTAS PALABRAS
+
+   SHOW TABLES LIKE '%obra%';
+   
+
+ 

@@ -1,0 +1,207 @@
+                                               TERMINAL 
+
+ZIPEAR 
+
+  ziperar de desde terminal (macos)  →   zip -r tierraBlanca.zip tierraBlanca (r par un directorio )
+  extraer terminal → unzip tierraBlanca.zip
+  zip -r nombeDelArchivo.zip nombreDelDirectorio/  -->  zipear directorio completo (con directorios anidados) en Ubuntu 24 
+  unzip -l nombreDelArchivo.zip  --> comprobar el directorio zipeado
+  
+Descargar desde termina → scp -r  wh52o55jo1zx@107.180.2.121:/home/wh52o55jo1zx/public_html/bmatic.com.pe /Users/rolf  . (el punto es importante para indicar en que direcctorio se esta guardado el punto indica el directorio actual
+)
+
+     nc -zv 107.180.2.121 22  --> Comando para verificar si el servidor remoto ssh esta activo 
+
+	ssh-keygen -R 107.180.2.121  --> actuliza la ruta desde el archivo  kwown host
+
+	ssh -o HostKeyAlgorithms=ssh-rsa wh52o55jo1zx@107.180.2.121  → forzar ingreso de ssh 
+
+	scp -o HostKeyAlgorithms=ssh-rsa two-b_ecomoda.sql wh52o55jo1zx@107.180.2.121:/home/wh52o55jo1zx/public_html/evanzu.com/ecomoda  → Cargar archivo con scp
+
+	scp -o HostKeyAlgorithms=ssh-rsa wh52o55jo1zx@107.180.2.121:/home/wh52o55jo1zx/public_html/evanzu.com/ecomoda/two-b_ecomoda.sql ./
+	→ descargar archivo en el directorio actual 
+
+
+
+INSTALAR YEWTUBE ( mps -youtube)
+
+0) https://github.com/mps-youtube/yewtube
+1) Instalar y actualizar con pip 3 yewtube
+2) Instalar con pipx yewtube ( en ubuntu me resulto pip3 no encontraba el repositorio)
+
+ MOVER
+ 
+	 move * /home/wh52o55jo1zx/public_html/evanzu.com/ecomoda → mover todos los archivos de la carpeta actual a otra 
+
+	 move .htaccess /home/wh52o55jo1zx/public_html/evanzu.com/ecomoda → mover un archivo
+
+     mv /Users/rolf/Downloads/id_rsa.ppk .   ---> mueve el archivo a la carpeta actula donde me encuentro (archivo id_rsa.ppk)
+COPIAR 
+
+      cp nombre_arhivo.varios  /mi/directorio/aqui --> compiar archivo a una directorio especifico 
+      cp /mi/direccion/nombre_archivo.varios  /mi/directori/aqui --> copiar archivo  de directorio a directorio 
+      cp /mi/direccion/nombre_archivo.varios  . --> copia un archivo al direcorio actula donde me encuentro   
+      cp -r /var/www/html/inacons_frame  /mi/directorio/aqui  --> copiar todo un directorio a un direcorio especifico 
+
+COPIAR CAMBIANDO NOMBRE 
+
+     cp nombre_original nuevo_nombre  --> Copiar el mismo archivo con unnombre nombre en el mismo directorio        
+     cp -r nombe_directorio_origen nuevo_nombre_directorio  --> Copiar un directorio en le mismo con otro nombre   
+     cp -r nombe_directorio_origen  /mi/directorio/nuevo_nombre_directorio           
+    
+ CAMBIAR DE NOMBRE ARHCIVO 
+
+ mv producto.cs producto.csv  → renombrar extinción archivo 
+                               
+ BORRAR 
+ 
+  rm -f parte*  --→ Borra archivos que comienzen con el nombre parte 
+  
+  rm -r cud*  --> borrar carpeta que cominecen con crud
+
+  eliminar un carpeta terminal rm -r "nombre carpeta"
+
+unar archivo.rar  → descomprimir un archiv rar 
+
+abrir un archivo html desde terminal con chrome --> open -a "Google Chrome" index.html
+
+ LISTAR ARCHIVOS   
+
+ls -ltu   --> listar archivos en orden de creación
+
+ls -lt | awk 'NR<=11 {print $9}'  ---> Listar los ultimos 10 archivos creados
+
+ COMANDOS FTP TERMINAL
+
+ mput archivo1.txt archivo2.txt archivo3.txt  --> subir varios archivos por terminal
+ mput * .txt --> comodin para subir varios archivos  por extención 
+
+ mget archivo1.txt archivo2.txt archivo3.txt  --> descargar  varios archivos por terminal
+ mget * .txt --> comodin para subir varios archivos  por extención 
+  put directorio.tar.gz  --> se puede subir comprimiento 
+  tar xzf directorio.tar.gz --> desconprimir cuando se este conectado 
+  
+  APACHE EN MACOS TERMINAL 
+
+  sudo apachectl start --> Comando para arrancar a apache 
+  /usr/local/var/www/mi-sitio-web/ --> ruta direcorio apache en macos
+
+  APACHE EN UBUNTU 
+
+  sudo systemctl start apache2 --->  Arrancar apache 
+  sudo systemctl enable apache2 -->  Inicio de apache automaticamente 
+  /var/www/html/ --> ruta node se ejecuta los archivos apache  
+  http://localhost/ --> direccion url apache en local
+  
+
+NVM (INSTALADOR DE VERSIONES DE NODE FACIL)
+
+1) instalacion
+ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+ 
+2) instalar version de node
+
+nvm install 20 --> cambiar el numero por la version que se quiera instalar
+
+3)Comando para usar la version instalada (puedes instalar y usar varias veriones)
+
+ nvm use 20 
+
+4) Verificar y disfrutar
+
+node -v 
+npm -v
+
+TEXTO A VOZ TERMINAL
+
+espeak --voices  --> listar todas las voces disponible
+espeak -v es-la  "Texto para el contexto:"
+
+# Especifica l ruta del archivo que deseas leer
+archivo="ruta/a/tu/archivo.txt"
+
+# Opciones adicionales para espeak
+opciones="-s 200" # Ajusta l velocidad aquí
+
+# Usa espeak para leer el contenido del archivo con las opciones especificadas
+espeak $opciones "$archivo"
+
+Con festival se ingresa a su propia interfaz me aprece un eror en la lista de voces , se tiene que correjir
+
+INFORMACION SYSTEMA 
+
+sudo dmidecode -t system  --> la serie de la laptop 
+speedtest-cli --simple    --> ver la velocidad de internet  
+nmcli device wifi show-password --> ver la contraseña de internet wifi 
+
+
+           INSTRUCCIONES PARA GENERAR SSL CON LETSENCRYPT 
+
+ 1 Instalar y verificar si esta instlado 
+ 
+  * Comando para instalar -->  brew install certbot (macos)
+  * Comando para saber si esta instlasdo y la versión -->  certbot --version
+
+2. Genera el certificado SSL para tu dominio cktravellers.com con el siguiente comando:
+   ```
+   sudo certbot certonly --manual -d cktravellers.com
+   ```
+
+3. Sigue las instrucciones que te proporcionará certbot para verificar que eres el propietario del dominio. Esto puede implicar añadir un registro DNS o un archivo en tu servidor web.
+
+		Saving debug log to /var/log/letsencrypt/letsencrypt.log
+		Requesting a certificate for cktravellers.com
+
+		- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		Create a file containing just this data:
+
+		ovyD6XXaLiRrBV6SYD2hBu9McY2iV_RmeVYK-taW6lU.PlGEnCmabuw7BgVKyAYe61EW-d82SYS9Edsn3wonorI
+
+		And make it available on your web server at this URL:
+
+		http://cktravellers.com/.well-known/acme-challenge/ovyD6XXaLiRrBV6SYD2hBu9McY2iV_RmeVYK-taW6lU
+
+		- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		Press Enter to Continue
+
+         se tiene que crear el nombre del archivo de la url y la tabla de la direccion , el contenido del archivo es la linea 60 , despues preciona enter y se genrar los archivos con los mensajes de exito:
+
+         Successfully received certificate.
+                          Certificate is saved at: /etc/letsencrypt/live/cktravellers.com/fullchain.pem
+                          Key is saved at:         /etc/letsencrypt/live/cktravellers.com/privkey.pem
+                          This certificate expires on 2024-10-17.
+                          These files will be updated when the certificate renews.
+                          
+                          NEXT STEPS:
+                          - This certificate will not be renewed automatically. Autorenewal of --manual certificates requires the use of an authentication hook script (--manual-auth-hook) but one was not provided. To renew this certificate, repeat this same certbot command before the certificate's expiry date.
+                          
+                          - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                          If you like Certbot, please consider supporting our work by:
+                           * Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+                           * Donating to EFF:                    https://eff.org/donate-le
+                          - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                                           
+
+
+4. Una vez verificada la propiedad del dominio, certbot generará los archivos CRT, KEY y CABUNDLE. Por lo general, estos archivos se encuentran en el directorio `/etc/letsencrypt/live/cktravellers.com/`.
+
+        Para listar los archivos debes escribir el siguiente comando, (no te dejara ir a la dirección del directorio con cd)  :
+
+         sudo ls /etc/letsencrypt/live/cktravellers.com/
+         
+
+5. Puedes copiar los archivos a la ubicación que desees para utilizarlos en la configuración de tu servidor web.
+
+          sudo micro /etc/letsencrypt/live/cktravellers.com/fullchain.pem   --> archivo CRT (solo la primera parte)
+          sudo micro /etc/letsencrypt/live/cktravellers.com/privkey.pem  ---> archivo KEY 
+          sudo micro /etc/letsencrypt/live/cktravellers.com/chain.pem   --> archivo CABUNDLE    
+
+############################################### PROBAR API CON CURL #############################################################################
+
+curl -X POST \
+ https://evanzu.com/covende/dni.php \
+ -H "Content-Type: application/json" \
+ -d '{"dni":42492278}'
+
+
+ 

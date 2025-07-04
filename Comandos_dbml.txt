@@ -1,0 +1,46 @@
+COMANDO PARA LISTAR TODOS LOS PROGRAMA NPM INSTALADOS GLOBALMENTE 
+
+ npm list -g --depth=0
+
+INSTALACIÓN 
+
+ npm install -g @dbml/cli --> Libreria para covetir archivos .dbml a sql(postgre y mysql)
+
+ npm install -g dbdocs    --> Libreria para generar documeentacion
+
+COMANDO PARA CREAR  SCRIPT EN MYSQL
+
+  dbml2sql schema.dbml -o schema.sql ( este codigo por defecto crea código para postgre)
+
+  dbml2sql inacons.dbml --mysql -o ina.sql (crea un archivo sql con el nombre que elijas)
+
+  dbml2sql schema.dbml --mysql (imprime el codigo generado en la tabla)
+
+
+COMANDO PARA CREAR DOCUMENTACION EN LINEA 
+
+   dbdocs login --> primero es necesario loguearse (llegara codigo al correo) 
+
+   dbdocs build inacons.dbml --project=INACONS-DB  --> se crea el proyecto en el parametro project = puedes cambiar el nombre o colocar el nombre del proyexo para actulizarlo 
+
+   dbdocs remove <project_name> --> Eliminar proyecto
+
+   COMANDO PARA CONFIGURAR CONTRAEÑA EN EL PROYECTO
+
+    $ dbdocs password --set <password> --project <project name>
+    ✔ Password is set for <project name>
+
+    $ dbdocs password --project <project name>
+    ? Enter password: [hidden]
+    ? Re-enter password: [hidden]
+    ✔ Password is set for <project name>
+
+    $ dbdocs build <path to your dbml file>/database.dbml --password <password>
+    Pushing new database schema to project your_project...
+    ✔ Password is set for 'Ecommerce'
+    Done. Visit: https://dbdocs.io/khanh-tran-quoc/Ecommerce
+
+
+URL CON ISTRUCCIONENS 
+
+   https://dbdocs.io/docs/ci-integration

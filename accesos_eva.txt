@@ -1,0 +1,313 @@
+Amplify
+
+enrique@evanzu.com 
+Godaddy 
+82094173
+ a2evpR;lgX"X|y0Es+ 
+anderson7258@
+
+
+⸻⸻⸻⸻ moaning Ruth________________________________ 
+41701931 4912 4610 1301 7168 
+040622. 
+///////////////////// new moaning 
+4280 8201 5543 5393 
+01/29 793 
+
+36545498942
+
+35597698524013 gina
+
+////////////////////////////////////////////////////////////////////// cargar backend Covende heroku ////////////////////////////////////////
+
+git login 
+git:remote -a covende-backend
+
+git push heroku rolando:main
+
+
+//////////////////////////////////////////////////////////////Consulta productos /////////////////////////////////////
+
+
+store_id:{ $nin: ["64d3f1e043acab002d306672"]}
+  { $limit:10},
+
+ store_id: "64d3f1e043acab002d306672"
+
+
+db.product.aggregate([
+    {
+        $match: {
+            product_active: true,
+            test: false ,
+            store_id: "64d3f1e043acab002d306672"       
+        }
+    },
+    {
+        $lookup: {
+            from: "brand",
+            localField: "product_brand",
+            foreignField: "brand_id",
+            as: "brand"
+        }
+    },
+    {
+        $unwind: {    path: "$brand", preserveNullAndEmptyArrays: true }
+    },
+  
+    {
+        $project: {
+            _id:0,     
+             id: "$custom_id",
+            product_name:  { 
+                $concat: [
+                    { $toUpper: { $substrCP: ["$product_name", 0, 1] } }, 
+                    { $toLower: { $substrCP: ["$product_name", 1, { $subtract: [{ $strLenCP: "$product_name" }, 1] }] } }
+                ]
+            },          
+            description: "$product_detail.featured_description",
+            availability: { $cond: { if: { $gt: [ "$stock", 0 ] }, then: "in_stock", else: "out_of_stock" }},
+            link: {  $concat: [ "https://www.covende.com/producto/", "$slug"  ]   },
+            image_link: { $arrayElemAt: ["$product_detail.photographs", 0] },
+            Price: { $concat: [   {   $toString: "$price_unit",   }     ," PEN"  ] },          
+            mpn: "$sku",
+            brand: { 
+                $cond: { 
+                    if: { $eq: ["$product_brand", "GENERIC"] }, 
+                    then: "Genérico", 
+                    else: "$brand.name" 
+                }
+            }
+        }
+    },
+{ $out: "export_tem_google" }
+])
+
+
+ mongoexport --uri "mongodb+srv://Covende:sytV9HLpUa30QMA9@cluster0.ennzw.mongodb.net/covendeDB" --collection export_tem_google.count --type csv --fields id,product_name,description,availability,link,image_link,Price,mpn,brand   --out efes.csv
+
+
+
+db.product.aggregate([
+    {
+        $match: {
+            product_active: true,
+            test: false           
+        }
+    },
+    {
+        $lookup: {
+            from: "brand",
+            localField: "product_brand",
+            foreignField: "brand_id",
+            as: "brand"
+        }
+    },
+    {
+        $unwind: {    path: "$brand", preserveNullAndEmptyArrays: true }
+    },
+  
+    {
+        $project: {
+            _id:0,     
+             id: "$custom_id",
+            product_name:  { 
+                $concat: [
+                    { $toUpper: { $substrCP: ["$product_name", 0, 1] } }, 
+                    { $toLower: { $substrCP: ["$product_name", 1, { $subtract: [{ $strLenCP: "$product_name" }, 1] }] } }
+                ]
+            },          
+            description: "$product_detail.featured_description",
+            availability: { $cond: { if: { $gt: [ "$stock", 0 ] }, then: "in_stock", else: "out_of_stock" }},
+            link: {  $concat: [ "https://www.covende.com/producto/", "$slug"  ]   },
+            image_link: { $arrayElemAt: ["$product_detail.photographs", 0] },
+            Price: { $concat: [   {   $toString: "$price_unit",   }     ," PEN"  ] },          
+            mpn: "$sku",
+            brand: { 
+                $cond: { 
+                    if: { $eq: ["$product_brand", "GENERIC"] }, 
+                    then: "Genérico", 
+                    else: "$brand.name" 
+                }
+            }
+        }
+    },
+{ $out: "export_products_google" }
+])
+
+
+ mongoexport --uri "mongodb+srv://Covende:sytV9HLpUa30QMA9@cluster0.ennzw.mongodb.net/covendeDB" --collection export_products_google --type csv --fields id,product_name,description,availability,link,image_link,Price,mpn,brand   --out efe.csv
+
+
+
+
+https://www.covende.com/producto/.  
+
+
+
+db.product.aggregate([
+    {
+        $match: {       
+            custom_id:{  $in:[ "RE190LFSM”,”SMA057MZKHLTP”,“C11CJ63301”,“HYLED3254GIM”,”SMA155MZKFLTP”, “83ER002HLM”,”BVSTKT3101053”,”15DY5000LA”, “ST580”, “BLSTBH4655053”  ]}
+
+        }
+    },
+    {
+        $lookup: {
+            from: "brand",
+            localField: "product_brand",
+            foreignField: "brand_id",
+            as: "brand"
+        }
+    },
+    {
+        $unwind: {    path: "$brand", preserveNullAndEmptyArrays: true }
+    },
+  
+    {
+        $project: {
+            _id:0,     
+             id: "$custom_id",
+            product_name:  { 
+                $concat: [
+                    { $toUpper: { $substrCP: ["$product_name", 0, 1] } }, 
+                    { $toLower: { $substrCP: ["$product_name", 1, { $subtract: [{ $strLenCP: "$product_name" }, 1] }] } }
+                ]
+            },          
+            description: "$product_detail.featured_description",
+            availability: { $cond: { if: { $gt: [ "$stock", 0 ] }, then: "in_stock", else: "out_of_stock" }},
+            link: {  $concat: [ "https://www.covende.com/producto/", "$slug"  ]   },
+            image_link: { $arrayElemAt: ["$product_detail.photographs", 0] },
+            Price: { $concat: [   {   $toString: "$price_unit",   }     ," PEN"  ] },          
+            mpn: "$sku",
+            brand: { 
+                $cond: { 
+                    if: { $eq: ["$product_brand", "GENERIC"] }, 
+                    then: "Genérico", 
+                    else: "$brand.name" 
+                }
+            }
+        }
+    } ,
+   { $out: "export_tem_google" }
+])
+
+/////////////////////////////////
+//////////////////////////////////////
+
+
+db.product.aggregate([
+    {
+        $match: {       
+            slug: "samsung-galaxy-a24-128gb-4gb-65-negro-7rs7136xxw8r"
+        }
+    },
+    {
+        $lookup: {
+            from: "brand",
+            localField: "product_brand",
+            foreignField: "brand_id",
+            as: "brand"
+        }
+    },
+    {
+        $unwind: {    path: "$brand", preserveNullAndEmptyArrays: true }
+    },
+  
+    {
+        $project: {
+            _id:0,     
+             id: "$custom_id",
+            product_name:  { 
+                $concat: [
+                    { $toUpper: { $substrCP: ["$product_name", 0, 1] } }, 
+                    { $toLower: { $substrCP: ["$product_name", 1, { $subtract: [{ $strLenCP: "$product_name" }, 1] }] } }
+                ]
+            },          
+            description: "$product_detail.featured_description",
+            availability: { $cond: { if: { $gt: [ "$stock", 0 ] }, then: "in_stock", else: "out_of_stock" }},
+            link: {  $concat: [ "https://www.covende.com/producto/", "$slug"  ]   },
+            image_link: { $arrayElemAt: ["$product_detail.photographs", 0] },
+            Price: { $concat: [   {   $toString: "$price_unit",   }     ," PEN"  ] },          
+            mpn: "$sku",
+            brand: { 
+                $cond: { 
+                    if: { $eq: ["$product_brand", "GENERIC"] }, 
+                    then: "Genérico", 
+                    else: "$brand.name" 
+                }
+            }
+        }
+    } ,
+     {
+     $merge: {
+      into: "export_tem_google",
+      whenMatched: "keepExisting",
+      whenNotMatched: "insert"
+    }
+  }
+  ])
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+db.product.aggregate([
+    {
+        $match: { 
+              store_id: "64d3f1e043acab002d306672",
+            
+            sku:{  $in:[ "RE190LFSM", "SMA057MZKHLTP"]}
+
+        }
+    },
+    {
+        $lookup: {
+            from: "brand",
+            localField: "product_brand",
+            foreignField: "brand_id",
+            as: "brand"
+        }
+    },
+    {
+        $unwind: {    path: "$brand", preserveNullAndEmptyArrays: true }
+    },
+  
+    {
+        $project: {
+            _id:0,     
+             id: "$custom_id",
+            product_name:  { 
+                $concat: [
+                    { $toUpper: { $substrCP: ["$product_name", 0, 1] } }, 
+                    { $toLower: { $substrCP: ["$product_name", 1, { $subtract: [{ $strLenCP: "$product_name" }, 1] }] } }
+                ]
+            },          
+            description: "$product_detail.featured_description",
+            availability: { $cond: { if: { $gt: [ "$stock", 0 ] }, then: "in_stock", else: "out_of_stock" }},
+            link: {  $concat: [ "https://www.covende.com/producto/", "$slug"  ]   },
+            image_link: { $arrayElemAt: ["$product_detail.photographs", 0] },
+            Price: { $concat: [   {   $toString: "$price_unit",   }     ," PEN"  ] },          
+            mpn: "$sku",
+            brand: { 
+                $cond: { 
+                    if: { $eq: ["$product_brand", "GENERIC"] }, 
+                    then: "Genérico", 
+                    else: "$brand.name" 
+                }
+            }
+        }
+    } ,
+   {
+      $merge: {
+      into: "export_tem_google",
+      whenMatched: "keepExisting",
+      whenNotMatched: "insert"
+    }
+
+       
+   }
+])
+
+
+ mongoexport --uri "mongodb+srv://Covende:sytV9HLpUa30QMA9@cluster0.ennzw.mongodb.net/covendeDB" --collection  export_tem_google  --type csv --fields id,product_name,description,availability,link,image_link,Price,mpn,brand   --out efes.csv
+
+
+

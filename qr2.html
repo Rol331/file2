@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Puedes descargar el script e incluirlo de manera local si así prefieres-->
+    <script src="https://unpkg.com/qrious@4.0.2/dist/qrious.js"></script>
+    <title>Generar códigos QR - By Parzibyte</title>
+    <style>
+     .codigoQRContainer {
+                 display: flex;
+                 flex-direction: column;
+                 align-items: center;
+                 margin: 100px;
+                 width: 200px;
+             }
+     
+             .codigoQRContainer img {
+                 margin-bottom: 10px;
+             }
+     
+             .codigoQRContainer p {
+                 margin: 0;
+                 text-align: center;
+             }
+         </style>
+
+         </head>
+         
+         <body>
+             <div id="contenedorCodigosQR"></div>
+         
+             <script>
+                 // Array con las URLs
+                 var urls = [
+                     "https://www.covende.com/producto/parlante-jbl-speaker-boombox-3-squad-verde-w1d2xn6s3qmx/?campaign=LAUNCH",
+                     "https://www.covende.com/producto/refrigeradora-lg-264lt-top-freezer-con-door-cooling-gt26bpp-ly8vx0w0gw01/?campaign=LAUNCH",
+                     "https://www.covende.com/producto/lavadora-whirlpool-19kg-ww19lbabla-pkau6e4oj7sx/?campaign=LAUNCH",
+                     "https://www.covende.com/producto/cocina-indurama-4-quemadores-vernet-spazio3-2o7l58k6k6g5/?campaign=LAUNCH",
+                     "https://www.covende.com/producto/freidora-de-aire-bord-5lt-digital-njbw7r4jhn5d/?campaign=LAUNCH",
+                     "https://www.covende.com/producto/samsung-galaxy-a24-128gb-4gb-65-negro-7rs7136xxw8r/?campaign=LAUNCH"
+                 ];
+
+          // Obtener el contenedor de los códigos QR
+        var contenedorCodigosQR = document.getElementById('contenedorCodigosQR');
+
+        // Iterar sobre cada URL y generar un código QR para cada una
+        urls.forEach(function(url) {
+            // Crear un nuevo elemento div para el bloque de la imagen y la URL
+            var codigoQRContainer = document.createElement('div');
+            codigoQRContainer.classList.add('codigoQRContainer');
+
+             // Crear un nuevo elemento img para el código QR
+            var qrImagen = document.createElement('img');
+            qrImagen.src = new QRious({
+                value: url,
+                size: 200,
+                backgroundAlpha: 0,
+                level: "H"
+            }).toDataURL(); // Convertir el código QR en una URL de imagen
+
+            // Agregar la imagen al contenedor
+            codigoQRContainer.appendChild(qrImagen);
+
+             // Crear un nuevo elemento p para la URL
+            var urlParrafo = document.createElement('p');
+            urlParrafo.textContent = url;
+            codigoQRContainer.appendChild(urlParrafo);
+
+            // Agregar el bloque al contenedor de los códigos QR
+            contenedorCodigosQR.appendChild(codigoQRContainer);
+        });
+
+        </script>
+        
+        </body>
+        
+        </html>

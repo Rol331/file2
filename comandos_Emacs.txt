@@ -1,0 +1,329 @@
+                       
+Comandos Emacs
+
+emacs -nw → emacs en modo terminal
+
+Crear archivo 
+
+emacs miarchivo.txt 
+
+C-x C-f  esrcribes el nombre del archivo y enter (tambien sirve para crar archivo)
+
+Guardar archivo 
+
+C-x C-s —---> guarda archivo en la posición actual 
+C-x C-c  —--> garda cerrando emacs 
+
+Buscar y abrir 
+C-x C-f abrir un archivo en emacs (puede navegar en el directorio y buscas y enter)
+M-x find-file  → Ingresar la ruta del archivo 
+Arrastrar y soltar el archivo en emacs 
+M-x dired  → navegar por los directorios y abrir archivos 
+C-x d -> navegar por los directorios dired (presiona q para volver a una ventana anterior en dired
+
+  Buscar texto o palabra dentro de un directorio actual 
+   
+M-x rgrep “texto” /usr/share/doc  → colocar el texto de búsqueda en comillas  después el directorio donde buscar (si no se coloca el direcotorio, muestra el actual)
+   
+
+ABANDONAR
+
+C-z → Abandono momentaneo
+fg → regresar otra vez a emacs
+C-x C-c → salir definitamente 
+C-g → Anula el orden de cualquier comando
+
+
+COMANDO PARA AUTOCOMPLETADO 
+M-x auto-complete-mode
+
+
+
+                                  ***   TODO BUFFER  (Ventanas) ***
+
+ LISTAR BUFFER
+ 
+C-x C-b -> listar todos los buffer
+M-x ibuffer -> abre una ventada con los buffer listados 
+M-x list-ibuffer → lista los buffer en el area de mensajes
+
+C-x o -> moverse entre los buffers
+
+CERRAR
+
+ctrl-x k  (kill-buffer)  → cerrar un buffer sin guardar k
+M-x kill-this-buffer  → Cerrar buffer sin guardar 
+ctrl-x ctrl-c (save-buffers-kill-terminal) sierra emacs guardando los buffers 
+
+DIVIR BUFFER 
+C-x 3 → divide la pantalla vertical
+C-x 4 b   →divide en cuatro  la pantalla 
+M-x split-window-below → abre una nueva ventana en forma horizontal 
+M-x split-window-right  abre una nueva ventana en forma vertical 
+C-0 eliminar una ventana 
+
+
+TAMAÑO DE BUFFER 
+
+C-x = → Ver el tamaño de la buffer
+C-x { →disminuye los buffer 
+C-x } → aumenta el buffer
+
+
+BUSQUEDA DE BUFFER 
+
+M-x isearch-forward → búsqueda hacia adelante
+C-s → buscar y siguiente 
+M-x isearch-backward → búsqueda hacia atraz {}
+C-r  →anterior
+C-c C-l → buscar sin distinguir entre mayusculas y minusculas 
+
+
+MODO BUFFER 
+C-x C-q
+
+
+
+  PESTAÑAS
+
+M-x tab-tar-mode
+M-x tab-new → crea una nueva pestaña cuando se ejecuta en la ventana actual
+M-x tab-next → avanza a la siguiente pestaña 
+M-x  tab-previous → retrocede a la anterior pestaña
+
+3. Cambiar entre pestañas: Puedes cambiar entre pestañas utilizando los comandos `M-x tab-next` y `M-x tab-previous`, o los atajos de teclado `C-x t n` y `C-x t p`, respectivamente. También puedes utilizar `C-x t 0` para cerrar la pestaña actual.
+4. Renombrar una pestaña: Puedes asignar un nombre personalizado a una pestaña utilizando el comando `M-x tab-rename`. Esto te permitirá identificar fácilmente el contenido de cada pestaña.
+5. Guardar y restaurar conjuntos de pestañas: Puedes guardar y restaurar conjuntos de pestañas utilizando los comandos `M-x tab-save` y `M-x tab-load`. Esto te permite guardar conjuntos de pestañas para usarlos más adelante, incluso en diferentes sesiones de Emacs.
+Recuerda que `tab-bar-mode` puede tener características adicionales dependiendo de las extensiones que tengas instaladas en tu configuración de Emacs. Puedes consultar la documentación de Emacs o las extensiones específicas para obtener más información sobre las funciones y opciones adicionales relacionadas con las pestañas.
+
+
+
+
+                                      ***  ORG MODE  ***
+                                      
+Tienes que crear buffers y después: 
+M-x org-mode → Activa org mode 
+C-x C-s → guardar un archivo org (es fundamental guard con la extención .org)
+M-x → save-buffer  guarda archivo 
+C-x C-s → Cargar archivo
+
+SECCIONES
+
+*top level Headline
+** second Level
+*** tercer nivel 
+     más texto 
+
+<Tab> → Ciclar  (contraer y expandir secciones)
+C-u <Tab> → expande globalmente todas las secciones 
+
+C-c C-n → mover a la siguiente sección
+C-c C-t  → mover  al anterior sección
+
+M-ret → inserte elemento mismo nivel
+M-<left> / <right> → incrementa y decrementa un nivel
+simplemente cambia la fecha manualmente y guarda el buffer para actualizar 
+
+(Me salio con shift y flechas en emacs)
+C-c C-t →  Marcas un tarea como pendiente “TODO” o “DONE”
+
+C-c C-s →  programas fecha de inicio de una tarea 
+C-c C-d →  colocas fecha fin de un tarea 
+C-s → buscar caracter en buffer 
+
+
+Etiquetas y propiedades:
+
+** TODO tarea importante
+         :PROPIERTIES:
+         :PRIORIDAD: A
+         :ETIQUETAS : trabajo urgente
+         :END:
+
+
+                                         ***   PROGRAMAR EN EMACS  ***
+
+M-x linum-mode → Muestra los numeros de la linea de código 
+M-x display-line-numbers-mode → muestras números en la versiones más recientes 
+M-x display-line-numbers-mode -->Descativar tambien sirve para desactivar
+M-x global-display-line-numbers-mode → muestra números de linea en todas la ventanas de emac (si vuelves a escribir el mismo comando se desactiva)  
+
+  TREEMACS 
+
+M-x treemacs     → Muestra un directorio mejorado en emacs (se tiene que instalar con melpa)
+M-x treemacs-select-dir → establece el directorio para emacs
+M-x treemacs-find-file → Comando para buscar un archivo de forma incremental
+C-s → Tecla para buscar de forma incremental 
+C-j → avanzar la busqueda
+C-k → retroceder la busqueda
+C-g → para cancelar busqueda
+
+ Asegúrate de que Treemacs esté activado
+(global-minor-mode 'treemacs-mode)
+
+ Navega a la ubicación deseada en Treemacs
+ Suponiendo que ya estás en la ubicación deseada
+
+ Crea un nuevo archivo
+ Presiona C-c C-t y selecciona l opción para crear un nuevo archivo; Ingresa el nombre del archivo y presiona Enter
+
+ Escribe algo en el archivo
+ Guarda el archivo con C-x C-s
+
+TAMAÑO DE FUENTE 
+
+C-x  C-+  --> Aumenta el tamaño de fuente 
+C-x  C--  --> disminuye le tamaño de fuente 
+
+Indentar código (ordena el código si se configura los modos)
+1 – C+space → seleccionar el área del código 
+2 –  M-x  indent-region → Comando para ordenar el código  ; C-tab combinacion de tecla 
+--tambien C-x + tab  y con las flechas 
+
+Comentar / descomentar  código 
+1 – C+space → seleccionar el área del código 
+2 – M-x comment-region → comando para comentar código 
+
+1 – C+space → seleccionar el área del código 
+2  – M-x uncomment-region →comando descomentar código 
+
+BUSQUEDAS
+
+ 
+M-x find-grep  → buscar cualquier texto dentro del directorio actual y sub directorios (se tiene que instalar )
+M-x helm-swoop → búsqueda incremental de texto dentro de un archivo especifico 
+M-g-g → Ir una determinada línea de código
+M-x goto-line  → ir a una determinada línea de código 
+M-x pwd → muestra el directorio actual 
+
+
+### Resumen del funcionamiento por cada tipo de reemplazo
+
+- **replace-string** es ideal para reemplazos simples sin necesidad de expresiones regulares.
+- **query-replace** ofrece flexibilidad al permitir tanto cadenas de texto como expresiones regulares para buscar y reemplazar
+.
+- **query-replace-regexp**, aunque no es un comando distinto, representa el uso de query-replace enfocado en expresiones
+ regulares complejas.
+
+
+BUSCAR Y REEMPLAZAR 
+
+M-x replace-string --> Reemplaze un solo texto 
+M-% --> replace string en teclado 
+M-x query-replace. --> Reemplaza texto del curso hacia abajo 
+M-x replace-regexp --> Reemplaza texto en todo el archivo 
+M-x replace-string-in-region. -->obvio  
+
+COMANDOS VARIOS TEXTO
+C-x u → deshacer cambio
+C-g → Cancela la operación de cancelar
+C-x z → rehacer cambio
+M-x undo → deshaga cambios en orden cronológico inverso
+
+C- space → seleccionar texto (presionar flechas direccion)
+M-x mark-whole-buffer → seleccionar todo el buffer 
+M-h → Seleccionar texto (presionar flecha direccion)
+M-w  → copiar texto (MACOS) ir al final del párrafo tambien  / opt+w
+M-w -> copiar emacs
+C-w   →Cortar texto w
+C-y → pegar texto
+Option - flechas → ir inicio final de cada letra 
+
+M-a  → inicio de un párrafo
+M-e   → final de un párrafo
+
+C-f → Avanza una letra
+C-b → Retrocede una  letrae 
+
+C-e  → inicio de una línea 
+C-a    → final de una línea
+
+C-n → avanzar una pantalla 
+C-p → retroceder una pantalla
+
+M-v  → scroll arriba 
+C-v →scroll abajo 
+
+M-< → inicio del buffer
+M-> → final del buffer 
+
+C-n → mueve el cursor hacia abajo
+M-x end-of-buffer → final de buffer 
+
+COMANDOS PARA ELIMINAR ESPACIOS EN BLACON AUTOMATICAMENTE 
+
+M-x delete-trailing-whitespace. --> probado elimina todos los espacion de todo el buffer 
+
+M-x whitespace-cleanup --> no funciona (buscar mas info)
+
+
+COMANDO PARA IR DIRECTAMENTE AL ARCHIVO 
+
+
+M-x find-file-at-point -> colocar enl cursor en el código de importación y luego escribir el comando   
+				
+COMANDOS PARA CUSTOMIZAR APARIENCIA 
+
+M-x customize-themes
+Enlace de nord theme: https://www.nordtheme.com/ports/emacs
+
+
+PAQUETES
+
+load-theme → colocar el nombre del thema
+M-x list-packages → lista los paquetes instalados en emacs 
+company → autocompletado de código (se instala con melpa)
+
+** INSTALAR PAQUETES 
+
+   Instalar packete con melpa 
+  --------------------------
+  M-x package-refresh-contents
+  M-x package-install
+  
+
+  Instalar packetes con use-package en archvio .emacs
+ ---------------------------------------------------
+
+ (use-package org
+    :ensure t
+    :config
+    ;; Configuraciones personalizadas para Org-mode
+    )
+     
+
+Configuración emac
+
+En el archivo init.el o .emacs
+en macos se encuentra en : /Users/rolf/.emacs.d/
+en ubuntu se debe crear el archivo init.el en el directorio .emacs.d/
+
+
+NAVEGAR POR INTERNET EN EMACS 
+
+M-x eww – para abrir una URL o buscar algo. Si el texto ingresado no tiene forma de URL, usa DuckDuckGo por defecto para buscar el texto ingresado.
+ Ejecutando eww de nuevo podemos ir abriendo más sitios.
+q – salirew
+g – recargar la páginaeww
+w – copiar la URL actual al kill ring
+d  – descargar la URL bajo el cursor
+l – ir para atrás (página anterior)
+r – ir para adelante
+H – ver el historial de sitios visitados, éste se pierde al cerrar eww.
+& – abrir la URL actual en un navegador web externo.
+v – ver código fuente. Se copia el código fuente del sitio en un buffer nuevo, y se activa html-mode si está disponible, bastante útil.
+Si tienen la última versión de Emacs ya lo pueden probar. Para más información: Emacs Web Wowser.
+
+SQL EN EMACS 
+
+ `M-x sql-mode`  -->  para entrar en el modo SQL.
+ `M-x sql-mysql` -->  para iniciar una conexión a MySQL. Se te pedirá que ingreses el nombre de usuario, la contraseña y el host.
+  ret --> para ejectutar consulta 
+  **programa recomendado --sql-indent
+
+EJECUTAR PROGRAMAS DE TERMINAL
+
+M-x "term" --> ejeuctar terminal y puedes usar programas en terminal
+exit --> escibir  en el terminal((en el mismo buffer terminal)) para salir 
+C-x C-c --> salir del modo terminal 
+

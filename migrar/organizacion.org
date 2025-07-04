@@ -1,0 +1,80 @@
+* PROYECTO ERP INACONS FASE 1.5 
+
+** Rolando [Fullstack - Análisita funcional - Scrum Master]
+*** DONE Api listado de diferencia en recursos en recepción
+    DEADLINE: <2025-01-09>
+    :ESTADO: TERMINADO
+*** TODO Api con las cantidades de recurso en cada fase
+    :ESTADO: PENDIENTE
+     DEADLINE: <2025-01-08>
+*** DONE Api listado de recursos por obra
+    :ESTADO: PENDIENTE
+    DEADLINE: <2025-01-08>
+*** TODO Api para generar Guia de remision y factura (PENDIENTE)
+    :ESTADO: PENDIENTE
+*** DONE [#A] Api para sustentar requerimiento (PENDIENTE)
+    :ESTADO: PENDIENTE
+*** DONE Api de comentario (tablas) (PENDIENTE)
+    DEADLINE: <2025-01-14 mar>
+    :ESTADO: PENDIENTE
+*** TODO Modificacion de Apis para filtros (PENDIENTE)
+    :ESTADO: PENDIENTE
+*** TODO Api para roles por obras (PENDIENTE)
+    :ESTADO: PENDIENTE
+*** DONE Apis crud y crear tabla de consumo , similar al prestamo 
+    :ESTADO: TERMINADO     
+*** DONE [#B] Actulizar o insertar los obra recurso al momento de la recepccion   (PENDIENTE)
+     :ESTADO: TERMINADO
+*** TODO [#B] Generar y guardar el código solo debe de contener 10 dígitos numericos y deben de empezar por 45  ejemplo 4590063625
+    :ESTADO: TERMINADO 
+    DEADLINE: <2025-01-10>
+*** DONE Subir datos de obras bodega recursos y parsear error (no se estaba relacionando la data solo se guardaba como texto)
+    :ESTADO: TERMINADO 
+    DEADLINE: <2025-01-10>
+*** DONE [#B] Crear un campo de responsable en la colleccion prestamos
+    DEADLINE: <2025-01-14>
+*** TODO NO mostrar el campo contraseña en las apis donde se muestra los datos de usuario
+*** TODO Eliminar todas la obras bodegas y sus recursos excepto el de velimac 
+
+    
+** Jeandri [Frontend - Análisita funcional]
+*** TODO Mostrar los recursos para envío en la transferencia
+    :ESTADO: EN CURSO
+*** TODO Generar Guía de envío y recepción
+    :ESTADO: EN CURSO
+*** TODO Subir para sustentar el requerimiento (PENDIENTE )
+    :ESTADO: EN CURSO
+*** TODO Manual de usuario ( se terminara cundo se complete las observacion del manual de usuario) (EN CURSO)
+    :ESTADO: EN CURSO    
+*** DONE Mapa de navegación ( si se modifica la ingerfaz se debe actualizar) (TERMINADO)
+     :ESTADO: TERMINADO
+     
+** Noe [Fullstack]
+*** TODO Colocar el recurso recepción en determinada Bodega
+    :ESTADO: EN CURSO
+*** TODO Generar histórico de movimientos
+    :ESTADO: PENDIENTE
+
+    
+* TODO Observicones modulo Pagos
+
+** DONE 1. agregar el total, el subtotal y el saldo pendiente
+** 2. agregar Pestañas (registrar pago, Realizar Pago, Verificar Pago)
+** DONE 3. mostrar la fecha de en registro de pago
+** DONE 4. agrgar tipo de dsc Fondo de garantia
+** DONE 5. en dsc agregar el subtotal y Total de Dsc
+** DONE 6. mostrar monto solicitado con IGV
+** DONE 7. mostrar dsc con IGV
+** DONE 8. En verificar Pagos ver detalles de la comprobante para verificar
+** DONE 9. despues de aprobar el pago no debe de mostrar el boton aprobar nuevamente
+** DONE 10. una vez completado el pago deberia de restringir para no editar los datos
+** DONE 11. si se sube una comprobante deberia de mostrarse
+** DONE 12. actulizar el campo Aprobacion al aprobar el pago 
+
+
+* TODO Modulo Facturacion
+** 1 Normalizacion de tablas
+** 2 codificacion de la base de datos
+** 3 Creacion de de apis para la mutacions y consultas
+** 4 Creacion de servicios en el frontend
+** 5 Creacion de slices en el frontend

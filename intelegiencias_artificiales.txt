@@ -1,0 +1,76 @@
+INSTALAR CHAT GTPTERMINAL DESDE TERMINAL SIN KEY UBUNTU
+
+https://github.com/aandrew-me/tgpt →url para instalar
+
+paso 1 instalar 
+curl -sSL https://raw.githubusercontent.com/aandrew-me/tgpt/main/install | bash -s 
+/usr/local/bin
+
+paso 2 ir a al directorio  
+/usr/local/bin
+paso 3 ejecutar terminal gtp en el directorio
+
+USAR BITO CLI EN UBUNTU Y MACOS
+
+paso 1: instalar
+https://github.com/gitbito/CLI→ url para instalar 
+
+paso 2: ubicar el archivo de bito → which bito
+
+paso 3: ir al directorio de donde esta bito → /usr/local/bin/bito
+
+paso 4: En el directorio escribir : bito
+ 
+paso 5 : Colocar email de registro / colocar código que es enviado al mail de registro
+
+paso 6 : Escribir la pregunta y presionar ctrl+d 
+
+final : Escribir quit para salir y presionar ctrl +d 
+
+CHAT GPT EN TERMINAL MACOS (SIN APIKEY)
+
+paso 1 : Instalar
+https://github.com/aandrew-me/tgpt →url para instalar
+
+curl -sSL https://raw.githubusercontent.com/aandrew-me/tgpt/main/install | bash -s /usr/local/bin
+
+Paso 2 : ir al archivo donde se instaló  /usr/local/bin
+
+paso 3:  Escribir tgpt ‘dentro de comillas para buscar’ enter
+
+
+CHAT GEMINI EN TERMINAL CON PYTHON (instalado en macos)
+
+https://www.youtube.com/watch?v=p5O_cvxNe04 → gemini terminal python
+
+AIzaSyCUX5lEDI8iXAbacmXh_nx38iMvjBcjLXs
+
+CHAT GEMINI EN TERMINAL CON NODE 
+
+Paso 1:  Tener instalado node , un version mayor a 18 (puedes usar nvm)
+Paso 2:  Ejecutar el segundo comando : npx gen-ai-chat@latest
+Paso 3:  Empezar a chatear con el comando npx gen-ai-chat "Hola"
+
+INSTALAR AIDER 
+
+pip3 install --upgrade aider-chat
+
+Paso 1 : instalacion 
+    python3 -m pip install -U aider-chat
+     si hay problemas instalar con pipx 
+     pipx install aider-chat
+- aider with Gemini    
+Paso 2 : setear id apis ( en este caso gemini)
+          export GEMINI_API_KEY=AIzaSyADADMaCW9VR7MdsYXKf-0xFozUbCeT0DU
+Paso 3 : Ejecutar agente 
+         aider --model gemini/gemini-1.5-pro-latest
+- aider with Deep seek 
+
+Paso 2 : export DEEPSEEK_API_KEY=sk-e5b80b32fcea457fb9426ee4ac2a3e31
+paso 3 : aider --deepseek
+
+  -aider with Grok 
+ 
+Paso 2 : export XAI_API_KEY=xai-LnDGR8tc3xO9svTjmswv1ZePQpQBzr8pwdtXqYQeODSULiY0RLuwk1NQlZSeeOldgQ3ewk9tvCspfHD6
+Pass 3 : aider --model xai/grok-beta
+       

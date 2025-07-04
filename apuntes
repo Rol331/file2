@@ -1,0 +1,134 @@
+sudo powermetrics --samplers smc | grep "CPU die temperature" --> saber la temperatura por terminal en macos 
+
+
+////////////////accesos hosting ecomoda /////////
+
+usario: 164830782
+contraseña: Brandemia*7
+ip:45.40.145.212
+
+///////clave maestra convendeo --> pass.ADMIN_@24cd 
+
+//////////////Enlace para programas rat //////////////////
+
+https://github.com/quasar/Quasar/releases
+
+https://github.com/quasar/Quasar
+
+https://github.com/moom825/xeno-rat
+
+https://www.onworks.net/es/software/windows/app-graph-rat
+
+https://github.com/zlocate/AhMyth-Rat-Modern/blob/master/README_ES.md
+
+Apache guacamole ---> programa vnc libre
+
+////Enlace para googdady evanzu /////
+
+enrique@evanzu.com 
+Godaddy 
+82094173
+ a2evpR;lgX"X|y0Es+ 
+anderson7258@
+
+
+/////////////////proyecto webohook///////////
+
+https://covende-backend.herokuapp.com/api.pagoefectivocallback/v1/callback
+
+
+////////cotraseña redis covende y graficentro //////////
+
+buIGoSvQP5hq7lA78dd6e3EDSXErnwpL
+
+//////////////Frases Cristianas /////////////////////
+
+
+confia en el señor y no tu propia prudencia
+
+Elesiaste 7:20
+
+proverviros 17:19
+
+Nehemias 9:31
+
+
+
+////////////////////////////////////////////////// wasap termial ///////////////////////////////
+
+
+Para usar WhatsApp Web desde la terminal en macOS, puedes utilizar una herramienta llmada whatsapp-web.js. Esta es una biblioteca de Node.js que te permite interactuar con
+ WhatsApp Web directamente desde tu terminal o cualquier script de Node.js.
+
+Primero, necesitas tener Node.js instalado en tu sistema. Puedes verificar si ya lo tienes instalado ejecutando node -v en tu terminal. Si no está instalado, puedes descargarlo
+ e instalarlo desde [el sitio oficial de Node.js](https://nodejs.org/).
+
+Una vez que tengas Node.js instalado, sigue estos pasos para configurar y usar WhatsApp Web desde la terminal:
+
+
+1. **Instala whatsapp-web.js**:
+   Abre tu terminal y ejecuta el siguiente comando para instalar whatsapp-web.js globalmente en tu sistema:
+
+   bash
+   npm install -g whatsapp-web.js
+   ```
+
+2. **Configura tu número de teléfono**:
+   Necesitarás un número de teléfono activo para usar WhatsApp Web. Asegúrate de tener acceso a este número y sigue los pasos para autenticarte con WhatsApp Web.
+   Esto generalmente
+ implica escanear un código QR utilizando la aplicación de WhatsApp en tu teléfono móvil.
+
+
+3. **Ejecuta el script de ejemplo**:
+   Una vez que hayas configurado tu número de teléfono, puedes ejecutar el script de ejemplo proporcionado por whatsapp-web.js para ver cómo funciona. Ejecuta el siguiente
+    comando en tu terminal:
+
+   bash
+      whatsapp-web.js --qr
+         ```
+
+   Este comando mostrará un código QR en tu terminal. Usa la aplicación de WhatsApp en tu teléfono para escanear este código y autenticarte.
+
+4. **Interactúa con WhatsApp Web**:
+   Con whatsapp-web.js, puedes enviar mensajes, recibir mensajes, y realizar muchas otras acciones utilizando comandos específicos. Consulta l [documentación oficial de wh
+   atsapp-web.js](https://github.com/pedroslopez/whatsapp-web.js) para obtener más detalles sobre cómo utilizar esta biblioteca.
+
+Recuerda que para mantener la sesión abierta y evitar que se cierre automáticamente debido al inactividad, debes asegurarte de que tu script esté corriendo cntinuamente o consider
+ar el uso de un servicio como Heroku para alojar tu bot de manera continua.
+
+Si necesitas ayuda específica con algún paso o si encuentras algún problema, no dudes en preguntar.
+~
+
+web : https://wwebjs.dev/
+
+
+/////////////////////////////////musica japan////
+yasuyuki okamura love mesage   ラブメッセージ
+
+
+
+///////////nombe de comit para recuperar: recover fronte end/////////
+
+
+/////////////////CODIGO DE PAGO CLARO ////////////////////////////
+
+H02960635
+H02960635
+
+1040836
+67977321
+----------------Comandos de red 2024------------------
+security find-generic-password -ga "UAP-INACONS" | grep "password:"--> ver contraseña wifi en macos
+nmcli device wifi show-password --> ver contraseña de wifi en ubuntu 24
+
+speedtest-cli --> Comando para ver la velocidad de internet(se debe instalar el programa);
+
+speedtest-cli --simple --> Comando para ver solo la velocidad de descarga
+
+speedtest-cli --simple --upload-only --> Comando para ver la velocidad solo la velocidad de subida
+
+
+---------------------------base de datos anterior -------------------------
+
+
+MONGO_URI=mongodb+srv://rolandoramos2013:2BE9k3fVdQGWS3c5@cluster0.7r1n9nb.mongodb.net/inacons?retryWrites=true&w=majority

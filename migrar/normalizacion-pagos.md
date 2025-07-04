@@ -1,0 +1,227 @@
+
+   Aprobacion 
+
+    Tabla Ordenes_pago (usando)
+	+----+----------+-------------------+--------------+------------+------------------+------------+-----------------+--------------+---------------+------------+
+	| id |   codigo | monto_solicitado  | tipo_moneda  | tipo_pago  | orden_compra_id  | estado     | Observaciones   | usuario_id   | comprobante   |   fecha    |
+	+----+----------+-------------------+--------------+------------+------------------+------------+-----------------+--------------+---------------+------------+
+    |  1 |  00001   |  2000.00          |  Soles       |  Adelanto  |      234         |  Pagado    |     ...         |    13        |  Factura      | 2025/01/22 |
+    |  2 |  00002   |   300.00          |  Soles       |  Adelanto  |      220         |  Pendiente |     ...         |    12        |  Factuta      | 2025/01/22 |
+    |  3 |  00003   |   400.00          |  Soles       |  Adelanto  |      240         |  pendiente |                 |    12        |  Factuta      | 2025/01/22 |
+    |  4 |  00004   |   100.00          |  Dolares     |  coontado  |      250         |  pendiente |      ...        |    12        |  Factura      | 2025/01/22 |
+    |  5 |  00005   |   220.00          |  Dolares     |  Credito   |      259         |  Pendiente |     ...         |    34        |  Factura      | 2025/01/22 |
+    +----------------------------------------------------------------------------------+------------------------------+--------------+---------------+------------+
+
+    tabla tipo_cambio (usando)
+
+     +-----+-----------------+-------------+
+     | id  |  orden_pago_id  |   cambio    |
+     +-------------------------------------+
+     |  1  |       4         |    3.67     |
+     --------------------------------------
+     |  2  |       5         |    3.8      |    
+     +-------------------------------------+
+
+     Tabla pagos_orden_pago (usando)
+
+     +----+-------------+----------+-----------------+---------------+-------------+ 
+     | id | fecha_pago  | monto    |  tipo_monedas   | orden_pago_id | usuario_id  | 
+     +-----------------------------+-----------------+---------------+-------------+
+     | 1  | 2025/01/22  |  1000.00 |   soles         |     1         |    22       |  
+     | 2  | 2025/01/25  |  1000.00 |   soles         |     1         |    22       |
+     +---------------------------------------------------------------+-------------+
+
+    Tabla  archivos_pagos (usando)
+
+     +-----+---------------+-------------------------+---------------+--------------+ 
+     | id  | orden_pago_id |        file             | usuario_id    |   fecha      |
+     +-----+---------------+-------------------------+---------------+--------------+ 
+     |  1  |     1         |  incons/Pagos/yape.pdf  |    22         |  2025/01/02  |
+     |  2  |     1         |  incons/Pagos/yape2.pdf |    22         |  2025/01/02  |
+     +------------------------------------------------------------------------------+
+
+     Tabla verificacion_archivo_pago (usando)
+
+      +-----+-------------------+-------------+--------------+-------------+
+      | id  | archivo_pago_id   | usuario_id  |    fecha     | estado      |
+      +-----+-------------------+-------------+--------------+-------------+
+      | 1   |   1               |  234        |  2025/01/02  |  aprobado   |
+      | 1   |   1               |  2          |  2025/01/02  | desaprobado |
+      +--------------------------------------------------------------------+
+
+      
+    Tabla comprobante_pago (usando)
+
+    +-----+---------------+----------------------------+---------------+ 
+     | id  | orden_pago_id |        file                 |   fecha      |
+     +-----+---------------+-----------------------------+--------------+ 
+     |  1  |     1         |  incons/Pagos/F001-0001.pdf |  2025/01/02  |
+     |  2  |     1         |  incons/Pagos/F001-0001.Pdf |  2025/01/02  |
+     +------------------------------------------------------------------+
+
+
+    Tabla ordenes_descueno (usando)
+
+     +---+------------------+----------+---------+-------------+------------+-------------+
+     | 1 |  orden_pago_id   | codigo   | monto   |  tipo       | detalle    | usuario_id  |
+     +---+----------------- +----------+---------+-------------+------------+-------------+ 
+     | 1 |       1          |   00001  |  125.00 |  detraccion |  descuento |     12      |
+     | 2 |       1          |   00002  |   25.00 |  detraccion |  descuento |     13      |
+     | 3 |       1          |   00002  |   25.00 |  detraccion |  descuento |     34      |
+     -------------------------------------------------------------------------------------+
+
+    Tabla aprobacion_orden_pago (usando)
+
+       +-----+-------------+-------------+------------+------------------+
+       | id  | usuario_id  | estado      | fecha      |  orden_pago_id   |
+       +-----+-------------+-------------+------------+------------------+
+       | 1   |   22        |  Aprobado   | 2025/01/02 |       1          |
+       | 2   |   23        |  Desprobado | 2025/01/02 |       1          |
+       +----------------------------------------------+------------------+
+   
+			 ----------------------------------------
+			 |       Entrega final el 24            |
+			 ----------------------------------------
+
+#Analisis de funcionalidad 
+
+  
+- Se debe mostar el proveedor ganador de esa ordden-compra 
+
+     Dudas funcionalidad
+          
+ 1) El pago se hace en soles y en dolares (la tabla lo almacena ) 
+ 2) Se debe guardar el tipo de moneda (la tabla lo almacena  )
+ 3) Se debe guaradar el tipo de cambio (la tabla lo alamcena  )    
+ 4) En los pagos se deben guardar con: 
+          a) tipo de monedas se hizo el pago por la  posibilidad de que solicito en dolares y se pago en monto en soles
+          b) Posibilidad de que el pago se fracciones en partes   
+          c)  
+          
+
+  1. Necesarias a implementar 
+	  1) mostar si esl pago presento factura , casos 
+
+	      1) factura y pago 
+	      2) Adelanto sin Factura 
+	      3) Adelanto con Factura 
+	      4) credito  con Factura 
+	      5) credito  sin factura 
+	     
+	  2) Debe mostrar los pagos programados indicando los descuentos        
+	  3) Primero se solcita el pago 
+	  4) Gerencia debe aprobarlo 
+	  5) Se programa el Pago 
+
+ 2. 
+        
+ funcionalidad-backend  
+ Flujo segun Henry 
+
+   SOLICITAR ---> APROBAR GERENCIA --->  PROGRAMAR PAGO ( SE MUESTRA LA INTERFRAZ)  --->  PAGAR SUBIR Comprobante 
+
+
+  genera -- ve/ aprueba Gereencia ----  subir comprobante/ finalizar -- avisar al proveedor 
+
+*** ACTORES 
+
+    -Generacion de la solicitud de pago 
+    -Aprobador de de la solicitu de pago 
+    -Ingresar los pagos realizados 
+    
+
+ 
+
+  - obtener los datos por cada orden_compra al seleccionarlo
+  - obtener datos de ordenes de pago 
+  - obtneer datos de los pagos 
+  - obttener datos del descuento  
+ 
+
+             
+
+  
+   Pendientes funcionalidad 
+  ----------------------------
+  
+  1. Ordén Compra, listado Pago  
+
+       - Guardar el monto de pago , se guardara cual monto el calculado o el que se ingresara ????   (considero guardar el monto si el usuario decide guardar el monto en soles)
+       - Considere guardar el comprobante ( para determinadad si esta pendiente su entrega ) 
+       - si no esta presente se mostrar un mensaje mencionando que esta pendiente el comprobante 
+       - siempre que se seleccionar dolares es obligatorio guardar el tipo de cambio 
+                  
+       detalle cuando se selecciona el monto en dolares , (ese descuento es en soles  )
+
+       
+  2. Generar descuento (OK)
+  
+       -  Pero falta determinar la funcionlidad del porcentaje calculado ( Pienso hacer un funcioanlidad por cada tipo de ) 
+       
+       -  Si se elijio el monto en dolares automanticamnete  
+           
+       -  Mostrar mensaje de al momento de pulsar el boton guardar  ( mostrando el monto a guarar , el porcentaje que se uso ) 
+
+
+  3. Aprobar pago gerencia  (OK)
+      
+
+
+  4. Almacenar  pago  (OK)
+
+        al subir el vauche se deb mostar un boton de finalizar el pago 
+
+        
+
+  5. Reporte a proveedor 
+
+   Enviar por mail el voucher y los detalles
+   por wasap 
+   o por la interfaz Planteada por Noe 
+
+       
+  Apuntes 
+  --------
+
+  Si es posible facturas en dolares  pero solo para exportacion 
+  ****
+   pefecto gracias , ahora por favor cuando se pulsa el foto confirmar se debe guardar el comprobante de pago 
+   usar el slice archivopPagoslice para subir el archvio   y cuando coloca el monto se guarda en el aprobacionesOrdenPagoslice 
+   pago y el tipo de moneda para esto al lado del de input type numer crea un sleccion con opciones soles y dolares  si no hay valor en 
+   el input 
+   por defecto debe tener seleccionadoo el tipo soles
+
+   y cuando se pulse el boton finalizar el pago  se actualiza el estado del tipo en ordenPagoSlice  
+
+   No es obligatorio  que el monto tenga data  si no hay data que no se use el slice aprobacionesPagosslice  y que solo se guarde el archvio ,
+   tampo es obligatorio que el bonto finalizare tenga un valor ,
+
+   pero cunado se pulse el boton si de finalizar el pago es obligatorio colocar el monto 
+ ***  
+
+## Calculos
+
+
+1. **Identificar si aplica la detracción**: No todas las operaciones están sujetas a detracción. Debes verificar si el bien o servicio que estás facturando está en la lista de operaciones sujetas a este sistema, según lo establecido por la SUNAT (Superintendencia Nacional de Aduanas y de Administración Tributaria).
+
+2. **Determinar el porcentaje de detracción**: El porcentaje de detracción varía dependiendo del tipo de bien o servicio. Por ejemplo, para servicios se suele aplicar un 12%, pero es importante verificar el porcentaje específico en la normativa vigente de la SUNAT.
+
+3. **Calcular el importe de la detracción**: Una vez que sepas el porcentaje aplicable, calcula el monto de la detracción multiplicando el valor total de la operación (incluyendo IGV, si corresponde) por el porcentaje de detracción. Por ejemplo, si el total de la factura es de 10,000 soles y el porcentaje de detracción es del 12%, la detracción será 10,000 * 0.12 = 1,200 soles.
+
+
+
+1. **¿Quiénes están sujetos a retención?**: Las operaciones sujetas a retención son aquellas realizadas por proveedores que venden bienes o prestan servicios gravados con IGV. Sin embargo, no todas las empresas están obligadas a retener; solo aquellas designadas como agentes de retención por la SUNAT.
+
+2. **Porcentaje de retención**: El porcentaje de retención del IGV es generalmente el 3% del importe total de la operación. Este porcentaje puede variar, por lo que es importante verificar la normativa vigente.
+
+3. **Cálculo de la retención**: Para calcular la retención, se toma el monto total de la factura, que incluye el IGV, y se aplica el porcentaje de retención. Por ejemplo, si una factura totaliza 1,000 soles, la retención sería 1,000 * 0.03 = 30 soles.
+
+
+
+1. **¿Qué es un recibo por honorarios?**: Es un documento que emiten las personas naturales que realizan actividades independientes, como consultores, abogados, contadores, entre otros, para acreditar el pago por sus servicios profesionales.
+
+2. **¿Cuándo se aplica la retención?**: La retención se aplica cuando el monto del recibo por honorarios supera un determinado umbral, que es establecido por la SUNAT. Actualmente, si el monto del recibo es igual o mayor a 1,500 soles, se debe efectuar la retención.
+
+3. **Porcentaje de retención**: El porcentaje de retención es del 8% del importe total del recibo por honorarios. Este porcentaje se aplica sobre el monto bruto del recibo.
+
+4. **Cálculo de la retención**: Si un profesional emite un recibo por honorarios por 2,000 soles, la retención sería 2,000 * 0.08 = 160 soles. El cliente pagará al profesional 1,840 soles y retendrá los 160 soles para declararlos y pagarlos a la SUNAT.

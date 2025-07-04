@@ -1,0 +1,54 @@
+Teclas rapidas:  
+
+ctrl+e → abrir ventana de comandos 
+ctrl+b → shell mode 
+ctrl+t → nueva pestaña 
+ctrl+repag o ctrl+avpag → navegar entre pestañas
+alt+, o alt+. → navegar entre pestañas   
+alt+ { o alt+ } → avanzar entre parrafos arriba y abajo  
+ctrl+f  → buscar para siguiente flecha arriba 
+ctrl+l  → goto line
+ctr+ w  → desplazarse entre divisiones 
+
+Comandos:
+
+open nombre_archivo  →  abrir un archvio 
+set colorscheme twilight →establecer thema
+
+      monokai  (default)
+      zenbrun
+      gruvbox
+      darcula
+      twilight
+      railscast
+     bubblegum
+   
+     simple
+     solarized (color del terminal)
+     cmc-16
+     cmc-paper
+     geany
+ 
+    solarized-tc
+     atom-dark
+     cmc-tc
+     gruvbox-tc
+     material-tc
+      
+
+help keybindings →ayuda para el manejo de teclas rapidas 
+help commands  → Ayuda para comandos rapidos
+
+vsplit →divide la pantalla en forma vertical
+hsplit → divide la pantalla en forma horizontal 
+goto →ir al numero de linea  (goto ‘34 ‘)
+replace  ‘buscar’   ‘valor’
+
+Arbol directorio 
+
+https://github.com/NicolaiSoeborg/filemanager-plugin
+
+tree → comando para listar terminal 
+flecha izquierda → despliega carpeta
+flecha derecha  →  repliega carpeta
+tab → abre archivo

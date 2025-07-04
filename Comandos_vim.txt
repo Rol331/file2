@@ -1,0 +1,54 @@
+                   Comandos vim
+
+i → modo inserción 
+
+esc + : modo comando 
+
+ :w → guardar 
+:wq → guardar y salir 
+:u  → undo 
+:u3 → undo tres veces
+
+Seleccionar y eliminar 
+v → modo visual 
+
+mover con las teclas direccionales o h,jk,l 
+pulsar para eliminar : d
+
+
+Sangria código 
+
+v → modo visual 
+mover con las teclas direccionales o h,jk,l 
+
+< → indentar a la derecha
+> → indentar a la izquierda
+
+Seleccionar y copiar
+v → modo visual 
+mover con las teclas direccionales o h,jk,l 
+y → copiar 
+p → pegar
+d → cortar (eliminar):y
+
+
+ir a una determinada línea:
+
+: numero de linea, ejm :32 
+
+Buscar (colocar /) d
+/escribir texto y presionar enter
+para ir a la siguiente búsqueda presionar n anterio N 
+
+Ir al final de parrafo 
+colocar el cursor al inicio del párrafo y presionar $
+
+Avanzar entre palabras 
+
+w→adelante 
+b→atras 
+
+e → final de la palabra actual 
+ge → ira la final de la palabra anterior
+^ → al principio de linea (shif +`)
+

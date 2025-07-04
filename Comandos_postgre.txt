@@ -1,0 +1,36 @@
+IMPORT SQL FILE  
+
+psql -U tu_usuario -d tu_nombre_de_base_de_datos -f nombre_de_tu_archivo.sql
+
+
+INNER JOIN EXAMPLE 
+
+
+ere is an example of an INNER JOIN of three tables that contain 4 records each in PostgreSQL:
+
+Assuming we have three tables named `table1`, `table2`, and `table3`:
+
+```sql
+CREATE TABLE table1 (
+    id INT,
+    name VARCHAR(50)
+);
+
+CREATE TABLE table2 (
+    id INT,
+    description VARCHAR(50)
+);
+
+CREATE TABLE table3 (
+    id INT,
+    category VARCHAR(50)
+);
+
+INSERT INTO table1 (id, name) VALUES (1, 'Record 1'), (2, 'Record 2'), (3, 'Record 3'), (4, 'Record 4');
+INSERT INTO table2 (id, description) VALUES (1, 'Description 1'), (2, 'Description 2'), (3, 'Description 3'), (4, 'Description 4');
+INSERT INTO table3 (id, category) VALUES (1, 'Category 1'), (2, 'Category 2'), (3, 'Category 3'), (4, 'Category 4');
+
+SELECT t1.name, t2.description, t3.category
+FROM table1 t1
+INNER JOIN table2 t2 ON t1.id = t2.id
+INNER JOIN table3 t3 ON t1.id = t3.id;

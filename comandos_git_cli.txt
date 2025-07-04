@@ -1,0 +1,17 @@
+COMANDO PARA EL LOGIN 
+-gh auth login
+
+COMANDO PARA LOG OUT 
+-gh auth logout
+
+COMANDO PARA LISTAR PROYECTOS 
+-gh repo list rol331
+
+COMANDO PARA CREAR TOKEN ACCESO 
+-gh auth token --user Rol331
+
+
+ ##### COMANDOS CLI COPILOT ###### 
+
+
+gh copilot explain "explicame sudo apt-get"

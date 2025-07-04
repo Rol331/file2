@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Calendario de Metas</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  #calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+  
+  .day {
+    padding: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  
+  .selected {
+    background-color: #ffcc00;
+  }
+</style>
+</head>
+<body>
+<h1>Calendario de Metas</h1>
+<div id="calendar"></div>
+<script>
+const calendar = document.getElementById('calendar');
+const selectedDays = JSON.parse(localStorage.getItem('selectedDays')) || {};
+
+function createCalendar() {
+  const daysInMonth = 31; // Puedes ajustar esto según el mes
+  for (let i = 1; i <= daysInMonth; i++) {
+    const day = document.createElement('div');
+    day.textContent = i;
+    day.classList.add('day');
+    
+    // Verificar si el día está marcado en el Local Storage
+    if (selectedDays[i]) {
+      day.classList.add('selected');
+    }
+    
+    day.addEventListener('click', function() {
+      day.classList.toggle('selected');
+      if (day.classList.contains('selected')) {
+        selectedDays[i] = true;
+      } else {
+        delete selectedDays[i];
+      }
+      localStorage.setItem('selectedDays', JSON.stringify(selectedDays));
+    });
+    
+    calendar.appendChild(day);
+  }
+}
+
+createCalendar();
+
+</script>
+</body>
+</html>
+
